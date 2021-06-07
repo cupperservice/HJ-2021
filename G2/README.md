@@ -51,9 +51,41 @@ Applicationサーバの生存監視及び、クライアントからのリクエ
 負荷試験に使用する
 
 ## DynamoDB
+* テーブル名: 任意の値
+* Primary key: sessionId
+  * Type: String
+
 ## RDS
+* Engine Type: Amazon Aurora
+* Edition: Amazon Aurora with MySQL compatibility
+* Capacity type: Provisioned
+* Engine version: MySQL 5.7
+* Templates: Production
+* DB cluster Identifier: 任意の値
+* Master username: 任意の値
+* Master password: 任意の値
+* DB instance class: db.r5.large
+* Availability & durability: Create an Aurora Replica or Reader node in a different AZ
+* VPC: 自身のVPC
+* Subnet group: 複数のAZ & 複数のPrivateサブネットを指定したサブネットグループ
+* Public access: No
+* VPC security group: DB用のセキュリティグループを指定
+* Database authentication: Password authentication
+
 ## Bastion Server
+* Instance Type: t2.micro
+* 配置先: Publicサブネット
+* IAM role: なし
+
 ## Template Server
+* Instance Type: m5.large
+* 配置先: Privateサブネット
+* インストールするソフトウェア
+  * Java  
+  [インストール手順](https://docs.aws.amazon.com/ja_jp/corretto/latest/corretto-8-ug/amazon-linux-install.html)
+* IAM role: 以下のポリシーを適用したIAM role  
+  AmazonDynamoDBFullAccess
+
 ## Launch Template
 ## Auto Scaling Group
 ## Target Group
