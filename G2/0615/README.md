@@ -15,7 +15,39 @@ https://github.com/cupperservice/mall-sample
 * POST /v1/users/login
 * POST /v1/tweet/
 
-TODO HTTPのテストができるツールの一覧を書いておく
+VSCore Rest Clientでの実行例
+```
+@target = http://3.239.42.136:8080
+
+@loginId = sample@example.com
+@password = password00
+
+###
+# @name login
+
+POST {{target}}/v1/users/login
+Content-Type: application/json
+
+{
+  "login_id":"{{loginId}}",
+  "password":"{{password}}"
+}
+
+###
+
+@token = {{login.response.body.$.token}}
+
+POST {{target}}/v1/tweet/
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "content": "aiueo #word1 kakikukeko #word2"
+}
+```
+
+HTTPのテストができるツールの例  
+以下から好きなものを選んで使用してください。
 * curl
 * VSCode Rest Client
 * Chrome
