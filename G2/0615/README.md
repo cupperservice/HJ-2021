@@ -10,6 +10,9 @@ theme: default
 Template Server上に以下のアプリを構築してください。
 https://github.com/cupperservice/mall-sample
 
+### 注意
+Rest APIの動作確認するためにTemplateServerのセキュリティグループは一時的にインターネットからアクセスできるようにする必要がある
+
 ## 達成条件
 以下のAPIが正常に動作すること
 * POST /v1/users/login
