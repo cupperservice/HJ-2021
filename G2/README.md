@@ -87,7 +87,15 @@ Applicationサーバの生存監視及び、クライアントからのリクエ
   AmazonDynamoDBFullAccess
 
 ## Launch Template
+[参考](https://github.com/cupperservice/aws-tutorial)
+
 ## Auto Scaling Group
+[参考](https://github.com/cupperservice/aws-tutorial)
+
 ## Target Group
+[参考](https://github.com/cupperservice/aws-tutorial)
+
 ## Load Balancer
+[参考](https://github.com/cupperservice/aws-tutorial)
+
 ## Attacher

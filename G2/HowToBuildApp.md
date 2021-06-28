@@ -19,7 +19,7 @@ mysql> show tables;
 ```
 
 # Github
-https://github.com/cupperservice/mall-sample
+https://github.com/cupperservice/rest-sample-with-springboot-and-kotlin
 
 # アプリケーションのカスタマイズ
 以下の情報を環境に合わせて設定する
@@ -44,10 +44,29 @@ src/main/resources/application.yaml
 gradleを使用してアプリケーションをビルドする
 
 実行例:
-`gradlew build`
+`gradlew build -x test`
 
 # アプリケーションの実行
 gradleで実行する
 
 実行例:
 `gradlew bootRun`
+
+# 自動起動の設定
+1. ビルドして作成したJarファイルを以下に配置する
+* 配置先: `/opt/mall/lib/mall.jar`
+* 配置するJarファイル: `./build/libs/mall-0.0.1-SNAPSHOT.jar`
+
+2. アプリ起動用シェルを以下に配置する
+* 配置先: `/opt/mall/bin/start.sh`
+* 配置するシェル: `shell/start.sh`
+
+3. ユニットファイルを配置する
+* 配置先: `/etc/systemd/system/mall.service`
+* 配置するユニットファイル: `shell/mall.service`
+
+4. アプリを起動&自動起動設定
+`systemctl`コマンドを使用してアプリを起動&自動起動設定する。
+
+# AMIの作成
+アプリが正常に起動することを確認したらAMIを作成する。
