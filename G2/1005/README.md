@@ -14,7 +14,8 @@ theme: default
 
 ---
 # シナリオ作成
-* [リポジトリ](https://github.com/cupperservice/example-performance-test)をクローン
+* [リポジトリ](https://github.com/cupperservice/example-performance-test)をFork
+* Forkしたプロジェクトをクローン
 * シナリオを作成する
 
 ---
