@@ -28,3 +28,9 @@ Gatlingのシナリオを実行する
 
 ## 提出物
 シナリオの実行結果(target/gatlingの下に作成される)
+
+---
+# 他
+EC2インスタンスからDynamoDBへのアクセスはVPC Endpointを使用するようにすること。
+
+[参照](https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/vpc-endpoints-dynamodb.html)
