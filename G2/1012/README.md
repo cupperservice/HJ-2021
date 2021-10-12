@@ -52,3 +52,13 @@ Host attacker
     User ec2-user
     IdentityFile 秘密鍵をフルパスで指定
 ```
+
+---
+# 95: 5でシナリオを十個する方法
+
+```
+    .randomSwitch(
+      95.0  -> exec(メッセージを検索 * 10回),
+      5.0   -> exec(メッセージを送信)
+    ).exitHereIfFailed
+```
