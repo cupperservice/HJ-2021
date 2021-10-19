@@ -20,17 +20,20 @@
 git clone https://github.com/tfutils/tfenv.git ~/.tfenv
 ```
 
-2. terraformをインストール
+2. tfenvのパスを設定
+`sudo ln -s ~/.tfenv/bin/* /usr/local/bin`
+
+3. terraformをインストール
 ```
 tfenv install 0.15.5
 ```
 
-3. インストールしたバージョンを使用する
+4. インストールしたバージョンを使用する
 ```
 tfenv use 0.15.5
 ```
 
-4. バージョンの確認
+5. バージョンの確認
 ```
 terraform --version
 ```
