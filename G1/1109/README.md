@@ -73,3 +73,12 @@ sudo systemctl enable nginx
 ブラウザからEC2インスタンスのパブリックIPでアクセスして以下の画面が表示されればOK
 
 ![nginx](./img/nginx.png)
+
+# WebサーバにSSHでログインする方法
+1. Cloud9上に秘密鍵を保管する
+2. scpコマンドでbastionサーバに秘密鍵を転送する
+`scp -i 秘密鍵 秘密鍵 ec2-user@bastionサーバのPublic IP:/home/ec2-user/`
+3. bastionサーバにSSHでログインする
+`ssh -i 秘密鍵 ec2-user@bastionサーバのPublic IP`
+4. bastionサーバからWebサーバにSSHでログインする
+`ssh -i 秘密鍵 ec2-user@WebサーバのPrivate IP`
