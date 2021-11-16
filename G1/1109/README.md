@@ -76,9 +76,11 @@ sudo systemctl enable nginx
 
 # WebサーバにSSHでログインする方法
 1. Cloud9上に秘密鍵を保管する
-2. scpコマンドでbastionサーバに秘密鍵を転送する
+2. 秘密鍵のパーミッションを変更する
+`chmod 0400 秘密鍵`
+3. scpコマンドでbastionサーバに秘密鍵を転送する
 `scp -i 秘密鍵 秘密鍵 ec2-user@bastionサーバのPublic IP:/home/ec2-user/`
-3. bastionサーバにSSHでログインする
+4. bastionサーバにSSHでログインする
 `ssh -i 秘密鍵 ec2-user@bastionサーバのPublic IP`
-4. bastionサーバからWebサーバにSSHでログインする
+5. bastionサーバからWebサーバにSSHでログインする
 `ssh -i 秘密鍵 ec2-user@WebサーバのPrivate IP`
