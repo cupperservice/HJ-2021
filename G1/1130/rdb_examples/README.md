@@ -94,21 +94,6 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 mysql> 
 ```
 
-## mysql client インストール
-1. mariadb を削除する  
-
-    ```
-    $ sudo yum remove mariadb-libs
-    ```
-
-    参考：[mariadb](https://mariadb.com/kb/ja/mariadb/)
-
-2. mysql client をインストーする
-    ```
-    $ sudo yum localinstall -y https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
-    $ sudo yum install -y mysql-community-client
-    ```
-
 ## データベース作成
 mysqlのコンソールから以下のSQLを実行する。
 
