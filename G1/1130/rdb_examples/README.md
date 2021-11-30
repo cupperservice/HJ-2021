@@ -64,7 +64,7 @@ resource "aws_db_instance" "your-db" {
 ## SSHポートフォーワーディング（トンネリング）を確立する
 
 ```
-ssh -i 秘密鍵 3306:Databaseのエンドポイント:3306 ec2-user@bastionサーバのpublic ip
+ssh -i 秘密鍵 -L 3306:Databaseのエンドポイント:3306 ec2-user@bastionサーバのpublic ip
 ```
 
 ## データベースへの接続確認
@@ -98,6 +98,10 @@ mysql>
 mysqlのコンソールから以下のSQLを実行する。
 
 [SQL](./create.sql)
+
+1. CREATE DATABASEの行をコピペして実行する
+2. `use sampledb`を実行
+3. 残りのSQLを実行
 
 以下のように表示されればOK
 ```
