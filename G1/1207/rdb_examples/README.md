@@ -99,9 +99,9 @@ mysqlのコンソールから以下のSQLを実行する。
 
 [SQL](./create.sql)
 
-1. CREATE DATABASEの行をコピペして実行する
-2. `use sampledb`を実行
-3. 残りのSQLを実行
+1. ~~CREATE DATABASEの行をコピペして実行する~~
+2. ~~`use sampledb`を実行~~
+3. ~~残りのSQLを実行~~
 
 以下のように表示されればOK
 ```
