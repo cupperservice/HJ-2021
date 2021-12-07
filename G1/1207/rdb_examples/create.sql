@@ -1,5 +1,3 @@
-CREATE DATABASE sampledb;
-
 CREATE TABLE student (
   id          INTEGER AUTO_INCREMENT,
   first_name  VARCHAR(100) NOT NULL,
