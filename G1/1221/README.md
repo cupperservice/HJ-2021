@@ -64,8 +64,8 @@ module "common" {
     key_name = "sessionId"
   }
   ecs = {
-    exec_role = "arn:aws:iam::999775796670:role/ecsTaskExecutionRole" -> ecsTaskExecutionRoleのARNに変更する
-    task_role = "arn:aws:iam::999775796670:role/cupper2" -> IAMで作成したRoleのARNに変更する
+    exec_role = "" -> ecsTaskExecutionRoleのARNに変更する
+    task_role = "" -> IAMで作成したRoleのARNに変更する
   }
 }
 ```
