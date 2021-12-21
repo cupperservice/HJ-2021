@@ -8,7 +8,7 @@ terraformを使ってアプリケーションサーバを構築する
 ![](rest-sample.drawio.png)
 
 ## 事前準備
-AWS Consoleで以下のIAMロールを作成する。
+### AWS Consoleで以下のIAMロールを作成する。
 
 1. AWS consoleにログイン
 2. IAM -> Rolesに移動
@@ -26,6 +26,12 @@ AWS Consoleで以下のIAMロールを作成する。
 作成したロールを表示して、Role ARNをコピーしておく
 
 IAMロールもterraformで作成できるはずだが、使用している環境ではエラー（権限なし）となってしまうため、手動で作成する。
+
+### ecsTaskExecutionRoleのarnを調べる
+1. AWS consoleにログイン
+2. IAM -> Rolesに移動
+3. ecsTaskExecutionRoleでロールを検索する
+4. ecsTaskExecutionRoleを選択して、ARNをコピーする
 
 ## 手順
 
@@ -56,6 +62,10 @@ module "common" {
   session = {
     table_name = "cupper-Session"
     key_name = "sessionId"
+  }
+  ecs = {
+    exec_role = "arn:aws:iam::999775796670:role/ecsTaskExecutionRole" -> ecsTaskExecutionRoleのARNに変更する
+    task_role = "arn:aws:iam::999775796670:role/cupper2" -> IAMで作成したRoleのARNに変更する
   }
 }
 ```
