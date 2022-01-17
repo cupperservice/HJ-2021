@@ -12,20 +12,24 @@ terraformを使ってアプリケーションサーバを構築する
 ラボ演習環境「AWS Academy Learner Lab - Associate Services」を用意したので、そちらを利用できるようにする。
 AWSから学校のメールアドレス宛に届いたメールの「Get Started」 をクリックしてアカウントの作成を完了してください。
 
-### AWS Consoleで以下のIAMロールを修正する。
+### Key Pairsの作成
+1. AWS consoleにログイン
+2. EC2 -> Key Pairsに移動
+3. 「Create key pair」を押下
+4. Nameを入力
+5. 「Create key pair」を押下
+
+    __秘密鍵がダウンロードされます。ダウンロードした秘密鍵は厳重に保管しておくこと__
+
+### AWS Consoleで以下のIAMロールを修
 
 1. AWS consoleにログイン
 2. IAM -> Rolesに移動
-3. 「Create role」を押下
-4. Elastic Container Serviceを選択
-5. Elastic Container Service Taskを選択
-6. 「Next: Permissions」を押下
-7. Filter policiesにDynamodbを入力
-8. AmazonDynamodbFullAccessを選択
-9. 「Next: Tags」を押下
-10. 「Next: Review」を押下
-11. Role nameを入力
-12. 「Create role」を押下
+3. LabRoleを選択
+4. 「Attach policies」を押下
+5. Filter policiesにDynamodbを入力
+6. AmazonDynamodbFullAccessを選択
+7. 「Attach policy」を押下
 
 作成したロールを表示して、Role ARNをコピーしておく
 
@@ -106,6 +110,11 @@ curl -XGET http://${HOST}/health/check -v
 ```
 
 ## 課題の提出
-* 期限：1/31(月) 17:00
+* 期限：今期の最後の授業日
 * 提出物
   * 確認方法の実行結果（スクリーンショット）
+  * 以下のリソースの詳細画面のスクリーンショット
+    * VPC
+    * Subnet（4つ）
+    * Route Table
+    * Security Group
