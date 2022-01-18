@@ -35,7 +35,7 @@ AWSから学校のメールアドレス宛に届いたメールの「Get Started
 
 IAMロールもterraformで作成できるはずだが、使用している環境ではIAMロールの作成はできないため、手動で作成する。
 
-### terafformの準備
+### terafformの準備（terraformはインストール済みのため不要）
 Cloud 9を立ち上げてterraformをインストールする
 
 1. tfenvをインストール
