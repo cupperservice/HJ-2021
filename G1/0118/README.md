@@ -116,5 +116,5 @@ curl -XGET http://${HOST}/health/check -v
   * 以下のリソースの詳細画面のスクリーンショット
     * VPC
     * Subnet（4つ）
-    * Route Table
-    * Security Group
+    * Route Table（２つ）
+    * Security Group（４つ）
