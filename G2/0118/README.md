@@ -21,7 +21,7 @@ AWSから学校のメールアドレス宛に届いたメールの「Get Started
 
     __秘密鍵がダウンロードされます。ダウンロードした秘密鍵は厳重に保管しておくこと__
 
-### AWS Consoleで以下のIAMロールを修
+### AWS Consoleで以下のIAMロールを修正
 
 1. AWS consoleにログイン
 2. IAM -> Rolesに移動
@@ -35,7 +35,7 @@ AWSから学校のメールアドレス宛に届いたメールの「Get Started
 
 IAMロールもterraformで作成できるはずだが、使用している環境ではIAMロールの作成はできないため、手動で作成する。
 
-### terafformの準備
+### terafformの準備（インストール済みのため作業不要）
 Cloud 9を立ち上げてterraformをインストールする
 
 1. tfenvをインストール
