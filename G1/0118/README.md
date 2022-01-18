@@ -21,7 +21,7 @@ AWSから学校のメールアドレス宛に届いたメールの「Get Started
 
     __秘密鍵がダウンロードされます。ダウンロードした秘密鍵は厳重に保管しておくこと__
 
-### AWS Consoleで以下のIAMロールを修
+### AWS Consoleで以下のIAMロールを修正
 
 1. AWS consoleにログイン
 2. IAM -> Rolesに移動
