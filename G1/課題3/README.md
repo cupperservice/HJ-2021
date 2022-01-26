@@ -89,8 +89,8 @@ module "common" {
     key_name = "sessionId"
   }
   ecs = {
-    exec_role = "" -> IAMロール()のARNに変更する
-    task_role = "" -> IAMロール()のARNに変更する
+    exec_role = "" -> IAMロール(LabRole)のARNに変更する
+    task_role = "" -> IAMロール(LabRole)のARNに変更する
   }
 }
 ```
