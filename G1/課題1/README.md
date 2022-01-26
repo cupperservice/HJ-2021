@@ -89,4 +89,4 @@ sudo systemctl enable nginx
 3. Webサーバに対してSSHトンネリングを確立する
 `ssh -i 秘密鍵 -L2200:WebサーバのPrivate IP:22 ec2-user@bastionサーバのPublic IP`
 4. Cloud 9からWebサーバにSSHでログインする
-`ssh -i 秘密鍵 ec2-user@127.0.0.1`
+`ssh -i 秘密鍵 -p 2200 ec2-user@127.0.0.1`
