@@ -87,6 +87,6 @@ sudo systemctl enable nginx
 2. 秘密鍵のパーミッションを変更する
 `chmod 0400 秘密鍵`
 3. Webサーバに対してSSHトンネリングを確立する
-`ssh -i 秘密鍵 -L22:WebサーバのPrivate IP:22 ec2-user@bastionサーバのPublic IP`
+`ssh -i 秘密鍵 -L2200:WebサーバのPrivate IP:22 ec2-user@bastionサーバのPublic IP`
 4. Cloud 9からWebサーバにSSHでログインする
 `ssh -i 秘密鍵 ec2-user@127.0.0.1`
