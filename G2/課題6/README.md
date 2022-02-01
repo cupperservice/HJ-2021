@@ -1,58 +1,85 @@
-# Gatling実行環境の構築
-* [sdkman](https://sdkman.io/)インストール
-* java 11インストール(sdk install java 11.0.11.j9-adpt)
-* sbtインストール(sdk install sbt)
+# 2021/12/7 授業内容
+以下の課題を実施する(つづき)
+[README](../README.md)に記載されているリソースをTerraformを使用して作成する。
 
----
-# シナリオ作成
-* [リポジトリ](https://github.com/cupperservice/example-performance-test)をFork
-* Forkしたプロジェクトをクローン
-* シナリオを作成する
+## 作成対象
+* VPC (作成済み)
+* サブネット (作成済み)
+* ルートテーブル (作成済み)
+* セキュリティグループ (一部作成済み)
+* DynamoDB
+* RDS
+* Bastion Server (作成済み)
+* Auto Scaling Group
+* Target Group
+* Load Balancer
+* IAMロール
+* ECS
 
----
-# 課題6
-Gatlingのシナリオを実行する
-※ atOnceUsers(1)で実行する
+## ECSについて
+* 構成  
+![](./img/ecs.png)
+  * 注1) __本来はIAM Roleもterraformで作成する必要があるが、権限がなく作成できないため手動で作成する。__
 
-## 提出物
-シナリオの実行結果(target/gatlingの下に作成される)
-
----
-# VPC EndpointでDynamoDBにアクセスする
-EC2インスタンスからDynamoDBへのアクセスはVPC Endpointを使用するようにすること。
-
-[参照](https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/vpc-endpoints-dynamodb.html)
-
----
-# VSCodeでEC2インスタンスに接続する
-## 前提条件
-EC2インスタンスにSSH接続できること（セキュリティグループ、Public IP）
-
-## 手順
-1. 左のメニューからVSCodeでRemote SSH Extensionをインストール
-2. 左下のメニューからOpen SSH Configuration Fileを選択
-3. 接続するEC2の情報を設定する
-* 例
+* task definition(json)の内容
 ```
-Host attacker
-    HostName EC2のPublic IP
-    User ec2-user
-    IdentityFile 秘密鍵をフルパスで指定
+[
+  {
+    "essential": true,
+    "entryPoint": [
+      "java", "-jar", "/app.jar"
+    ],
+    "image": "public.ecr.aws/z8b9j0x2/rest-sample:latest",
+    "name": "app-svr",
+    "ulimits": [
+      {
+        "name": "nofile",
+        "softLimit": 65536,
+        "hardLimit": 65536
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "/app-svr/task-definition",
+        "awslogs-region": "${region}",
+        "awslogs-stream-prefix": "app-svr"
+      }
+    },
+    "portMappings": [
+      {
+        "containerPort": 8080,
+        "hostPort": 8080,
+        "protocol": "tcp"
+      }
+    ],
+    "environment": [
+      {
+        "name": "spring.datasource.driver-class-name",
+        "value": "com.mysql.cj.jdbc.Driver"
+      },
+      {
+        "name": "spring.datasource.url",
+        "value": "jdbc:mysql://${db_endpoint}/${db_name}"
+      },
+      {
+        "name": "spring.datasource.username",
+        "value": "${db_username}"
+      },
+      {
+        "name": "spring.datasource.password",
+        "value": "${db_password}"
+      },
+      {
+        "name": "session.table_name",
+        "value": "${session_table_name}"
+      }
+    ],
+    "secrets": [
+    ]
+  }
+]
 ```
 
----
-# 95: 5でシナリオを実行する方法
-
-```
-    .randomSwitch(
-      95.0  -> exec(メッセージを検索 * 10回),
-      5.0   -> exec(メッセージを送信)
-    ).exitHereIfFailed
-```
-
-## シナリオでループする方法
-```
-.repeat(10) {
-        exec(メッセージを検索)
-    }
-```
+## 参照資料
+[Terraform AWS Providor](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
