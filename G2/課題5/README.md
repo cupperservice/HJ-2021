@@ -1,37 +1,69 @@
+---
+marp: true
+theme: default
+---
 # 課題5
-* [課題の続き](../0615/README.md)
-* systemdによるアプリの自動起動
-* オートスケールする構成の作成
+Gatlingによる負荷試験は難しいため、レポートの提出のみとします。
 
 ---
-# 達成条件
-* ALBを経由してアプリのAPIが一通り動作すること
-* Auto Scaling Groupの定義でEC2インスタンスの数を変更できること
-* １つのEC2インスタンスでアプリケーションを停止して、EC2インスタンスが入れ替わること
+# Gatling実行環境の構築
+* [sdkman](https://sdkman.io/)インストール
+* java 11インストール(sdk install java 11.0.11.j9-adpt)
+* sbtインストール(sdk install sbt)
 
 ---
-# 提出物
-* すべてのAPIの実行結果
-* ターゲットグループの詳細画面のスクリーンショット
+# シナリオ作成
+* [リポジトリ](https://github.com/cupperservice/example-performance-test)をFork
+* Forkしたプロジェクトをクローン
+* シナリオを作成する
 
 ---
-## systemdによるアプリの自動起動
-[自動起動の設定](../HowToBuildApp.md)を参考に環境を構築する
+# 課題
+Gatlingのシナリオを実行する
+※ atOnceUsers(1)で実行する
+
+## 期限
+10/25(月) 17:00
+
+## 提出物
+シナリオの実行結果(target/gatlingの下に作成される)
 
 ---
-## オートスケールする構成の作成
-  以下の手順 7 - 10を参考にオートスケールする構成にする
-  [手順](https://github.com/cupperservice/aws-tutorial)
+# VPC EndpointでDynamoDBにアクセスする
+EC2インスタンスからDynamoDBへのアクセスはVPC Endpointを使用するようにすること。
 
-作成するAWSのリソースは以下の通り
-* Launch Template
-* Auto Scaling Group
-* Target Group
-* Load Balancer
+[参照](https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/vpc-endpoints-dynamodb.html)
 
 ---
-## MySQLサーバの作成
-Auroraを使用するとクレジットを多く消費するので、代わりにMySQLサーバをたててください。
+# VSCodeでEC2インスタンスに接続する
+## 前提条件
+EC2インスタンスにSSH接続できること（セキュリティグループ、Public IP）
 
-参考：
-https://qiita.com/miriwo/items/eb09c065ee9bb7e8fe06
+## 手順
+1. 左のメニューからVSCodeでRemote SSH Extensionをインストール
+2. 左下のメニューからOpen SSH Configuration Fileを選択
+3. 接続するEC2の情報を設定する
+* 例
+```
+Host attacker
+    HostName EC2のPublic IP
+    User ec2-user
+    IdentityFile 秘密鍵をフルパスで指定
+```
+
+---
+# 95: 5でシナリオを実行する方法
+
+```
+    .randomSwitch(
+      95.0  -> exec(メッセージを検索 * 10回),
+      5.0   -> exec(メッセージを送信)
+    ).exitHereIfFailed
+```
+
+## シナリオでループする方法
+```
+.repeat(10) {
+        exec(メッセージを検索)
+    }
+```
